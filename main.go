@@ -15,8 +15,11 @@ func usage() {
 	fmt.Println()
 	fmt.Println("Categorias y unidades soportadas:")
 	fmt.Println("  temp     C (Celsius), F (Fahrenheit), K (Kelvin)")
-	fmt.Println("  length   m (metro), km (kilometro), mi (milla), ft (pie)")
-	fmt.Println("  weight   kg (kilogramo), g (gramo), lb (libra)")
+	fmt.Println("  long     m (metro), km (kilometro), mi (milla), ft (pie)")
+	fmt.Println("  peso     kg (kilogramo), g (gramo), lb (libra)")
+	fmt.Println("  vol      l (litro), ml (mililitro), gal (galon)")
+	fmt.Println("  vel      km/h, mph, m/s")
+	fmt.Println("  area     m2, ha (hectarea), ac (acre), ft2 (pie cuadrado)")
 	fmt.Println()
 	fmt.Println("Ejemplo: uof-calculator temp 100 C F")
 }
@@ -44,6 +47,12 @@ func main() {
 		result, err = converter.ConvertLength(value, converter.LengthUnit(from), converter.LengthUnit(to))
 	case "peso":
 		result, err = converter.ConvertWeight(value, converter.WeightUnit(from), converter.WeightUnit(to))
+	case "vol":
+		result, err = converter.ConvertVolume(value, converter.VolumeUnit(from), converter.VolumeUnit(to))
+	case "vel":
+		result, err = converter.ConvertSpeed(value, converter.SpeedUnit(from), converter.SpeedUnit(to))
+	case "area":
+		result, err = converter.ConvertArea(value, converter.AreaUnit(from), converter.AreaUnit(to))
 	default:
 		fmt.Fprintf(os.Stderr, "categoria desconocida: %s\n", category)
 		usage()
