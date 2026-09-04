@@ -98,3 +98,90 @@ func TestConvertWeight(t *testing.T) {
 		})
 	}
 }
+
+func TestConvertVolume(t *testing.T) {
+	tests := []struct {
+		name    string
+		value   float64
+		from    VolumeUnit
+		to      VolumeUnit
+		want    float64
+		wantErr bool
+	}{
+		{"l to ml", 1, Liter, Milliliter, 1000, false},
+		{"ml to l", 1000, Milliliter, Liter, 1, false},
+		{"gal to l", 1, Gallon, Liter, 3.785411784, false},
+		{"unsupported from unit", 0, "X", Liter, 0, true},
+		{"unsupported to unit", 0, Liter, "X", 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ConvertVolume(tt.value, tt.from, tt.to)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("ConvertVolume() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !tt.wantErr && !almostEqual(got, tt.want) {
+				t.Errorf("ConvertVolume() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestConvertSpeed(t *testing.T) {
+	tests := []struct {
+		name    string
+		value   float64
+		from    SpeedUnit
+		to      SpeedUnit
+		want    float64
+		wantErr bool
+	}{
+		{"kmh to mps", 3.6, KmPerHour, Mps, 1, false},
+		{"mps to kmh", 1, Mps, KmPerHour, 3.6, false},
+		{"mph to mps", 1, Mph, Mps, 0.44704, false},
+		{"unsupported from unit", 0, "X", Mps, 0, true},
+		{"unsupported to unit", 0, Mps, "X", 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ConvertSpeed(tt.value, tt.from, tt.to)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("ConvertSpeed() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !tt.wantErr && !almostEqual(got, tt.want) {
+				t.Errorf("ConvertSpeed() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestConvertArea(t *testing.T) {
+	tests := []struct {
+		name    string
+		value   float64
+		from    AreaUnit
+		to      AreaUnit
+		want    float64
+		wantErr bool
+	}{
+		{"ha to m2", 1, Hectare, SquareMeter, 10000, false},
+		{"m2 to ha", 10000, SquareMeter, Hectare, 1, false},
+		{"acre to m2", 1, Acre, SquareMeter, 4046.8564224, false},
+		{"unsupported from unit", 0, "X", SquareMeter, 0, true},
+		{"unsupported to unit", 0, SquareMeter, "X", 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ConvertArea(tt.value, tt.from, tt.to)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("ConvertArea() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !tt.wantErr && !almostEqual(got, tt.want) {
+				t.Errorf("ConvertArea() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
