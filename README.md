@@ -50,3 +50,12 @@ go test ./... -v
 ├── .golangci.yml        # Configuración del linter
 └── .github/workflows/ci.yml  # Pipeline de CI
 ```
+<img width="1921" height="1113" alt="Captura desde 2026-09-04 16-40-03" src="https://github.com/user-attachments/assets/b0dc343d-ffcc-4d66-8f5f-de3bed099add" />
+<img width="1921" height="1113" alt="Captura desde 2026-09-04 16-43-15" src="https://github.com/user-attachments/assets/563113c6-8608-40c8-9e75-691697fbc4eb" />
+<img width="1921" height="1113" alt="Captura desde 2026-09-04 16-48-35" src="https://github.com/user-attachments/assets/3104386a-0229-425d-b406-1c0a6748f4bd" />
+<img width="1921" height="1113" alt="Captura desde 2026-09-04 16-49-26" src="https://github.com/user-attachments/assets/ca4d55ba-c971-4577-aae8-d3a11c3be9ee" />
+
+
+
+
+
